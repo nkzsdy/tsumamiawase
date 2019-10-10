@@ -7,6 +7,10 @@ class Combination < ApplicationRecord
   accepts_nested_attributes_for :seasoning
 
   validates :user_id,       presence: true
+  validates :ingredient_id, presence: true
+  validates :seasoning_id,  presence: true
 
-  validates_uniqueness_of :ingredient_id, scope: :seasoning_id
+  validates_uniqueness_of :ingredient_id,
+    scope: :seasoning_id,
+    case_sensitive: true
 end
