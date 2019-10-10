@@ -1,0 +1,20 @@
+/ Button trigger modal
+%button{"data-target" => "#seasoning-modal", "data-toggle" => "modal", :type => "button"}
+  調味料を追加する
+
+/ Modal
+#seasoning-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h3#seasoning-modal-label.modal-title 調味料の追加
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        - @seasoning = Seasoning.new
+        = form_for @seasoning do |f|
+          .form-group
+            = f.label :name, "調味料の名前"
+            = f.text_field :name
+          = f.hidden_field(:user_id, value: current_user.id)
+          = f.submit "追加"

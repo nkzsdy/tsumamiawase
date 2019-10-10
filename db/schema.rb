@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_08_054535) do
+ActiveRecord::Schema.define(version: 2019_10_10_034320) do
 
   create_table "combinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -27,12 +27,16 @@ ActiveRecord::Schema.define(version: 2019_10_08_054535) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 
   create_table "seasonings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_seasonings_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -50,4 +54,6 @@ ActiveRecord::Schema.define(version: 2019_10_08_054535) do
   add_foreign_key "combinations", "ingredients"
   add_foreign_key "combinations", "seasonings"
   add_foreign_key "combinations", "users"
+  add_foreign_key "ingredients", "users"
+  add_foreign_key "seasonings", "users"
 end

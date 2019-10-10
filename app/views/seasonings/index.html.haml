@@ -1,0 +1,11 @@
+%h2.seasoning-heading 調味料の管理
+
+%ul.seasoning-list
+  - current_user.seasonings.each do |item|
+    %li
+      =item.name
+      =link_to "/seasonings/#{item.id}", method: :delete do
+        %i.fa.fa-trash.delete-seasoning
+
+.mordal-trigger-buttons
+  = render "combinations/shared/seasonings_modal"

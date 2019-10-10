@@ -1,0 +1,20 @@
+/ Button trigger modal
+%button{"data-target" => "#ingredient-modal", "data-toggle" => "modal", :type => "button"}
+  つまみを追加する
+
+/ Modal
+#ingredient-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h3#ingredient-modal-label.modal-title つまみの追加
+        %button.close{"aria-label" => "閉じる", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        - @ingredient = Ingredient.new
+        = form_for @ingredient do |f|
+          .form-group
+            = f.label :name, "つまみの名前"
+            = f.text_field :name
+          = f.hidden_field(:user_id, value: current_user.id)
+          = f.submit "追加"

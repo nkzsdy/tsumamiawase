@@ -1,0 +1,11 @@
+%h2.ingredient-heading つまみの管理
+
+%ul.ingredient-list
+  - current_user.ingredients.each do |item|
+    %li
+      =item.name
+      =link_to "/ingredients/#{item.id}", method: :delete do
+        %i.fa.fa-trash.delete-ingredient
+
+.mordal-trigger-buttons
+  = render "combinations/shared/ingredients_modal"

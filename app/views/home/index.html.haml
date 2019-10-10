@@ -1,24 +1,36 @@
-%p
-  %span tsumamiawase
-  は
-  %b つまみ
-  と
-  %b 食べ合わせ
-  を足してできた造語です。
+- if current_user.combinations.blank?
+  .explanation
+    %p
+      %span tsumamiawase
+      は
+      %b つまみ
+      と
+      %b 食べ合わせ
+      を足した造語です。
 
-%p お酒のつまみと、それに合わせる調味料のお気に入りのかけあわせを登録しておくことができます。
+    %p お酒のつまみと、それに合わせる調味料のお気に入りのかけあわせを登録しておくことができます。
 
-%p たとえば…
+    %p たとえば…
 
-%ul
-  %li
-    %b マグロの刺身
-    ×
-    %b 醤油
-  %li
-    %b ヒラメの刺身
-    ×
-    %b ポン酢
+    %ul
+      %li
+        %b マグロの刺身
+        ×
+        %b 醤油
+      %li
+        %b ヒラメの刺身
+        ×
+        %b ポン酢
 
-%p
-  %mark 早速かけあわせを作ってみましょう！
+    %p
+      %mark 早速かけあわせを作ってみましょう！
+- else
+  %h2.combination-heading これまで作ったかけあわせ
+  %ul.combination-list
+    - current_user.combinations.each do |item|
+      %li
+        =link_to "#{combination_name(item)}", "/combinations/#{item.id}/edit"
+        =link_to "/combinations/#{item.id}", method: :delete do
+          %i.fa.fa-trash.delete-combination
+
+=link_to "新しいかけあわせを作る", "/combinations/new" , class: "btn btn-primary"

@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: を入力してください。
+            password:
+              blank: を入力してください。
+            password_confirmation:
+              confirmation: が一致しませんでした。

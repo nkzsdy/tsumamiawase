@@ -24,6 +24,8 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             - if user_signed_in?
+              %li= link_to "つまみの管理", "/ingredients"
+              %li= link_to "調味料の管理", "/seasonings"
               %li= link_to "ログアウト", "/users/sign_out"
             - else
               %li= link_to "新規登録", "/users/sign_up"
