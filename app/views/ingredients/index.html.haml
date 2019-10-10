@@ -1,5 +1,12 @@
 %h2.ingredient-heading つまみの管理
 
+- if @ingredient
+  - if @ingredient.errors.any?
+    .alert.alert-danger{role: "alert"}
+      %ul
+        - @ingredient.errors.full_messages.each do |msg|
+          %li= msg
+
 %ul.ingredient-list
   - current_user.ingredients.each do |item|
     %li

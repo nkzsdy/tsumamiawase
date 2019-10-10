@@ -1,5 +1,13 @@
 %h2.seasoning-heading 調味料の管理
 
+- if @seasoning
+  - if @seasoning.errors.any?
+    .alert.alert-danger{role: "alert"}
+      %ul
+        - @seasoning.errors.full_messages.each do |msg|
+          %li= msg
+
+
 %ul.seasoning-list
   - current_user.seasonings.each do |item|
     %li

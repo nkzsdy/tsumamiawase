@@ -9,17 +9,17 @@ class SeasoningsController < ApplicationController
     if @seasoning.save
       redirect_back(fallback_location: root_path)
     else
-      #TODO エラーメッセージを表示
+      render 'index'
     end
   end
 
   def destroy
     if @seasoning.combinations.blank?
       @seasoning.delete
-      redirect_to seasonings_path
+      redirect_back(fallback_location: root_path)
     else
-      #TODO エラーメッセージを表示
-      redirect_to seasonings_path
+      @seasoning.errors.add(@seasoning.name, "を使ったかけあわせが登録されているため削除できません。")
+      render "index"
     end
   end
 

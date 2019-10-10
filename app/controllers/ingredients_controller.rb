@@ -9,17 +9,17 @@ class IngredientsController < ApplicationController
     if @ingredient.save
       redirect_back(fallback_location: root_path)
     else
-      #TODO エラーメッセージを表示
+      render 'index'
     end
   end
 
   def destroy
     if @ingredient.combinations.blank?
       @ingredient.delete
-      redirect_to ingredients_path
+      redirect_back(fallback_location: root_path)
     else
-      #TODO エラーメッセージを表示
-      redirect_to ingredients_path
+      @ingredient.errors.add(@ingredient.name, "を使ったかけあわせが登録されているため削除できません。")
+      render "index"
     end
   end
 

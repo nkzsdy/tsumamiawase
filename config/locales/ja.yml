@@ -1,5 +1,16 @@
 ja:
   activerecord:
+    models:
+      combination: かけあわせ
+      ingredient: つまみ
+      seasoning: 調味料
+    attributes:
+      combination:
+        ingredient: つまみ
+        ingredient_id: つまみ
+        seasoning: 調味料
+      ingredient:
+        name: つまみの名前
     errors:
       models:
         user:
@@ -10,3 +21,16 @@ ja:
               blank: を入力してください。
             password_confirmation:
               confirmation: が一致しませんでした。
+        combination:
+          attributes:
+            ingredient_id:
+              taken: と調味料のかけあわせがすでに登録されています。
+            ingredient:
+              required: を選択してください。
+            seasoning:
+              required: を選択してください。
+        ingredient:
+          attributes:
+            name:
+              blank: は未入力で追加できません。
+              taken: はすでに登録済みです。

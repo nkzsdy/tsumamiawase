@@ -1,13 +1,19 @@
-.mordal-trigger-buttons
-  = render "combinations/shared/ingredients_modal"
-  = render "combinations/shared/seasonings_modal"
+- if @combination.errors.any?
+  .alert.alert-danger{role: "alert"}
+    %ul
+      - @combination.errors.full_messages.each do |msg|
+        %li= msg
 
 = form_for @combination do |f|
   .form-group
     = f.label :ingredient_id, "つまみ"
-    = f.collection_select(:ingredient_id, current_user.ingredients, :id, :name, include_blank: true, class: "form-control")
+    %span.label.label-danger 必須
+    .form-group
+      = f.collection_select(:ingredient_id, current_user.ingredients, :id, :name, include_blank: true, class: "form-control")
   .form-group
     = f.label :seasoning_id, "調味料"
-    = f.collection_select(:seasoning_id, current_user.seasonings, :id, :name, include_blank: true, class: "form-control")
+    %span.label.label-danger 必須
+    .form-group
+      = f.collection_select(:seasoning_id, current_user.seasonings, :id, :name, include_blank: true, class: "form-control")
   = f.hidden_field(:user_id, value: current_user.id)
   = f.submit "保存"
