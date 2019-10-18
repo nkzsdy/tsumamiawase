@@ -29,8 +29,8 @@
   %ul.combination-list
     - current_user.combinations.each do |item|
       %li
-        =link_to "#{combination_name(item)}", "/combinations/#{item.id}/edit"
-        =link_to "/combinations/#{item.id}", method: :delete do
+        =link_to "#{combination_name(item)}", edit_combination_path(item.id)
+        =link_to combination_path(item.id), method: :delete do
           %i.fa.fa-trash.delete-combination
 
-=link_to "新しいかけあわせを作る", "/combinations/new" , class: "btn btn-primary"
+=link_to "新しいかけあわせを作る", new_combination_path , class: "btn btn-primary"

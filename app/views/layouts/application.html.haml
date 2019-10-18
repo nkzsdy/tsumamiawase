@@ -12,7 +12,6 @@
     /[if lt IE 9]
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"
 
-
   %body
     .navbar.navbar-default.navbar-static-top
       .container
@@ -24,12 +23,12 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             - if user_signed_in?
-              %li= link_to "つまみの管理", "/ingredients"
-              %li= link_to "調味料の管理", "/seasonings"
-              %li= link_to "ログアウト", "/users/sign_out"
+              %li= link_to "つまみの管理", ingredients_path
+              %li= link_to "調味料の管理", seasonings_path
+              %li= link_to "ログアウト", users_sign_out_path
             - else
-              %li= link_to "新規登録", "/users/sign_up"
-              %li= link_to "ログイン", "/users/sign_in"
+              %li= link_to "新規登録", new_user_registration_path
+              %li= link_to "ログイン", new_user_session_path
 
     .container
       .row
