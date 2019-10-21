@@ -27,7 +27,7 @@
 - else
   %h2.combination-heading これまで作ったかけあわせ
   %ul.combination-list
-    - current_user.combinations.each do |item|
+    - current_user.combinations.includes([:ingredient, :seasoning]).each do |item|
       %li
         =link_to "#{combination_name(item)}", edit_combination_path(item.id)
         =link_to combination_path(item.id), method: :delete do
